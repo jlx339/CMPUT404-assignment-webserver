@@ -1,8 +1,7 @@
 #  coding: utf-8 
 import SocketServer
-import os
 
-# Copyright 2016 Abram Hindle, Eddie Antonio Santos, Lixin Jin
+# Copyright 2013 Abram Hindle, Eddie Antonio Santos
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +17,7 @@ import os
 #
 #
 # Furthermore it is derived from the Python documentation examples thus
-# some of the code is Copyright © 2001-2016 Python Software
+# some of the code is Copyright © 2001-2013 Python Software
 # Foundation; All Rights Reserved
 #
 # http://docs.python.org/2/library/socketserver.html
@@ -33,41 +32,7 @@ class MyWebServer(SocketServer.BaseRequestHandler):
     def handle(self):
         self.data = self.request.recv(1024).strip()
         print ("Got a request of: %s\n" % self.data)
-
-	# Checkout if the request action is "GET", otherwise 405
-	requestAction = self.data.split(' ')[0]
-	## http version?
-	if (requestAction == "GET"):
-		request = "www" + self.data.split(' ')[1]
-	else:
-		request = "Invalid Action"
-		response = "HTTP/1.1 405 Method Not Allowed\r\n"
-		self.request.sendall(response)
-	
-
-	if (os.path.exists(request) == False):
-		response = "HTTP/1.1 404 Not Found\r\n "
-	else:
-		if (os.path.isdir(request)):
-			if (request.endswith("/")):
-				request = request + "index.html"
-			else:
-				request = request + "/index.html"
-			
-
-		# Checkout the type
-		if (request.endswith(".css")):
-			contentType = "text/css\r\n\r\n"
-		if (request.endswith(".html")):
-			contentType = "text/html\r\n\r\n"
-
-		f = open(request, 'r')
-		content = f.read()
-		f.close()
-		header = "HTTP/1.1 200 OK\r\nContent-Type: " + contentType
-		content = header + content + "\r\n"
-		self.request.sendall(content)
-
+        self.request.sendall("OK")
 
 if __name__ == "__main__":
     HOST, PORT = "localhost", 8080
