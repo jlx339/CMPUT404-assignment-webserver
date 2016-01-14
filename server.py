@@ -41,12 +41,19 @@ class MyWebServer(SocketServer.BaseRequestHandler):
 		request = "www" + self.data.split(' ')[1]
 	else:
 		request = "Invalid Action"
-		response = "HTTP/1.1 405 Method Not Allowed\r\n"
+		response = "HTTP/1.1 405 Method Not Allowed\n\n"
 		self.request.sendall(response)
-	
 
+	##self.request.sendall(request)
 	if (os.path.exists(request) == False):
-		response = "HTTP/1.1 404 Not Found\r\n "
+		response = "HTTP/1.1 404 Not Found\n\n"
+		##self.request.sendall("notnotnot")
+		self.request.sendall(response)
+	elif (".." in request):
+		response = "HTTP/1.1 404 Not Found\n\n"
+		##self.request.sendall("notnotnot")
+		self.request.sendall(response)
+		return
 	else:
 		if (os.path.isdir(request)):
 			if (request.endswith("/")):
