@@ -2,7 +2,7 @@
 import SocketServer
 import os
 
-# Copyright 2016 Abram Hindle, Eddie Antonio Santos, Lixin Jin
+# Copyright 2013,2016 Abram Hindle, Eddie Antonio Santos, Lixin Jin
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import os
 #
 #
 # Furthermore it is derived from the Python documentation examples thus
-# some of the code is Copyright © 2001-2016 Python Software
+# some of the code is Copyright © 2001-2013 Python Software
 # Foundation; All Rights Reserved
 #
 # http://docs.python.org/2/library/socketserver.html
